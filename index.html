@@ -1,0 +1,124 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.js"></script>
+  <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.css" />
+  <link rel="stylesheet" type="text/css"
+    href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick-theme.css" />
+    <link href='http://fonts.googleapis.com/css?family=Lato:400,700' rel='stylesheet' type='text/css'>
+    <style>
+        body{
+            background-color:white;
+        }
+        .navigator a{
+            text-align: center;
+            display:block;
+            text-decoration:none;
+            font-family: 'Lato', sans-serif;
+            font-size: 1.17em;
+            margin:0 1.5%;
+            min-height:30px;
+            color:#5e5e5e;
+            -webkit-tap-highlight-color: transparent;
+        }
+        .navigator .active{
+            border-bottom: 3.5px solid #936F1F;
+        }
+        .flexboxx{
+            display:flex;
+            justify-content: center;
+            white-space: nowrap;
+             overflow: auto;
+        }
+        .navigator::-webkit-scrollbar {
+              display: none;
+        }
+        .navigator {
+        -ms-overflow-style: none;  /* IE and Edge */
+         scrollbar-width: none;  /* Firefox */
+        }
+        img{
+            display:block;
+            max-width:100%;
+            margin:0 auto;
+            margin-top:50px;
+        }
+        a:active, a:focus {
+          outline: 0;
+          border: none;
+        }
+        @media only screen and (max-width:767px){
+            .navigator{
+                display:block;
+            }
+            
+        }
+        @media only screen and (max-width:491px){
+            .navigator a{
+                font-size:1em;
+                min-height:25px;
+            }
+        }
+        @media only screen and (max-width:437px){
+            .navigator a{
+                font-size:0.83em;
+                min-height:20px;
+            }
+        }
+        
+    </style>
+</head>
+<body>
+    <div class="navigator flexboxx">
+        <a href="#" class="active">THE LATEST</a>
+        <a href="#">OUR PRODUCTS</a>
+        <a href="#">HOW TO</a>
+        <a href="#">WE CARE ABOUT</a>
+        
+        
+    </div>
+    <img src="https://pbs.twimg.com/profile_images/758084549821730820/_HYHtD8F.jpg" alt="">
+
+    <!-- scripts -->
+
+
+    <script>
+        $(".navigator a").click(function(){
+            $(".navigator a").removeClass("active");
+            $(this).addClass("active");
+        })
+        $(document).ready(function(){
+            if($(window).width()<768) initSlick();
+            else $(".navigator").addClass("flexboxx");
+            $(window).on("load",function(){
+                if($(window).width()>768 && $(".navigator a:first-child").offset().left<1){
+                    $(".navigator").css("justify-content","start");
+                }
+            })
+        });
+        $(window).resize(function(){location.reload();})
+        function initSlick(){
+            $('.navigator').slick({
+                 slidesToShow: 2.5,
+                 slidesToScroll: 1,
+                 dots: false,
+                 arrows: false,
+                 centerMode: false,
+                 focusOnSelect: true,
+                 infinite:false,
+                //  variableWidth:true,
+                 swipeToSlide:true,
+                 
+             });
+             $(".navigator a").height(($(".slick-slider").height()+2)+"px");
+        }
+    </script>
+    
+</body>
+</html>
